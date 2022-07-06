@@ -1,0 +1,30 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+  web:
+      hostname: web
+      container_name: wt-app
+      image: node:14-alpine
+      restart: always
+      build: bootcamp-app/.
+      command: npm run initdb && npm run dev
+      volumes:
+        - .:bootcamp-app/
+        - /bootcamp-app
+      ports:
+        - "8080:8080"
+      depends_on:
+        - db
+      environment:
+        DATABASE_URL: postgres://postgres@postgres/measurements
+
+  db:
+    hostname: db
+    container_name: wt-db
+    image: postgres
+    restart: always
+    volumes:
+        - .:db/
+    environment:
+      POSTGRES_PASSWORD: example
