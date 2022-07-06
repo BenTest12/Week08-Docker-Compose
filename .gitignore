@@ -8,7 +8,7 @@ postgres.txt
 bootcamp.txt
 
 # History files
-.history
+.history/
 
 # User-specific files
 *.rsuser
