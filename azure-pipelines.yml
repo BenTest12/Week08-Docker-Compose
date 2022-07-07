@@ -28,4 +28,4 @@ steps:
       PGPASSWORD = $(PGPASS)
     action: 'Run a Docker Compose command'
     dockerComposeCommand: 'up'
-    arguments: '-d'
+    #arguments: '-d'
