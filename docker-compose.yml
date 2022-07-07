@@ -28,14 +28,14 @@ services:
         - "8080:8080"
         - "3000:3000"
       environment:
-        HOST: localhost
+        HOST: 0.0.0.0
         NODE_ENV: development
         HOST_URL: ${HOSTURL}
         COOKIE_ENCRYPT_PWD: superAwesomePasswordStringThatIsAtLeast32CharactersLong!
         OKTA_ORG_URL: ${OKTA_URL}
         OKTA_CLIENT_ID: ${OKTA_CLIENT}
         OKTA_CLIENT_SECRET: ${OKTA_SECRET}
-        PGHOST: 0.0.0.0
+        PGHOST: localhost
         PGUSERNAME: ${PGUSER}
         PGDATABASE: postgres
         PGPASSWORD: ${PGPASS}
