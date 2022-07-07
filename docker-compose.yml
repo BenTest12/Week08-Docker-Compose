@@ -13,8 +13,8 @@ services:
     volumes:
       -  ./init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      POSTGRES_USER: $(PGUSER)
-      POSTGRES_PASSWORD: $(PGPASS)
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASS}
       POSTGRES_DB: postgres
 
   web:
@@ -29,13 +29,13 @@ services:
       environment:
         HOST: 0.0.0.0
         NODE_ENV: development
-        HOST_URL: $(HOSTURL)
+        HOST_URL: ${HOSTURL}
         COOKIE_ENCRYPT_PWD: superAwesomePasswordStringThatIsAtLeast32CharactersLong!
-        OKTA_ORG_URL: $(OKTA_URL)
-        OKTA_CLIENT_ID: $(OKTA_CLIENT)
-        OKTA_CLIENT_SECRET: $(OKTA_SECRET)
+        OKTA_ORG_URL: ${OKTA_URL}
+        OKTA_CLIENT_ID: ${OKTA_CLIENT}
+        OKTA_CLIENT_SECRET: ${OKTA_SECRET}
         PGHOST: localhost
-        PGUSERNAME: $(PGUSER)
+        PGUSERNAME: ${PGUSER}
         PGDATABASE: postgres
-        PGPASSWORD: $(PGPASS)
+        PGPASSWORD: ${PGPASS}
         PGPORT: 5432
