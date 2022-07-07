@@ -26,6 +26,7 @@ services:
         - db
       ports:
         - "8080:8080"
+        - "3000:3000"
       environment:
         HOST: 0.0.0.0
         NODE_ENV: development
