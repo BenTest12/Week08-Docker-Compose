@@ -55,7 +55,6 @@ stages:
       runOnce:
         deploy:
           steps:
-          #- checkout: self docker-compose.yml
 
           - task: UniversalPackages@0
             inputs:
@@ -83,4 +82,4 @@ stages:
                 PGDATABASE = db
               action: 'Run a Docker Compose command'
               dockerComposeCommand: 'up'
-              #arguments: '-d'
+              arguments: '-d'
