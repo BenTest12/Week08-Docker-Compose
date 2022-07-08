@@ -63,7 +63,7 @@ stages:
               containerregistrytype: 'Azure Container Registry'
               azureSubscription: 'Azure Pass - Sponsorship(4c91c978-76e8-4500-a93a-fed14688e040)'
               azureContainerRegistry: '{"loginServer":"ben1213test.azurecr.io", "id" : "/subscriptions/4c91c978-76e8-4500-a93a-fed14688e040/resourceGroups/registry/providers/Microsoft.ContainerRegistry/registries/ben1213test"}'
-              dockerComposeFile: '**/docker-compose.yml'
+              dockerComposeFile: 'docker-compose.yml'
               dockerComposeFileArgs: |
                 HOST_URL = $(HOSTURL)
                 OKTA_ORG_URL = $(OKTA_URL)
