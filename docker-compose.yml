@@ -16,20 +16,11 @@ services:
       POSTGRES_USER: ${PGUSER}
       POSTGRES_PASSWORD: ${PGPASS}
       POSTGRES_DB: postgres
-      #DATABASE_URL: postgres://${PGUSER}:${PGPASS}@db:5432/postgres
-    networks:
-      test:
-        ipv4_address: 10.5.0.5
-
-
-
+    
   web:
       hostname: web
       container_name: wt-app
-      build:  .     
-      networks:
-        test:
-          ipv4_address: 10.5.0.6
+      build:  . 
       restart: always
       depends_on:
         - wt-db
@@ -47,18 +38,4 @@ services:
         PGUSERNAME: ${PGUSER}
         PGDATABASE: postgres
         PGPASSWORD: ${PGPASS}
-        #DATABASE_URL: postgres://${PGUSER}:${PGPASS}@db:5432/postgres
         PGPORT: 5432
-
-      condition: service_healthy
-      
-
-
-
-networks:
-  test:
-    driver: bridge
-    ipam:
-     config:
-       - subnet: 10.5.0.0/16
-         gateway: 10.5.0.1
