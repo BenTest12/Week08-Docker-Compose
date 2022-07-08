@@ -30,6 +30,12 @@ stages:
           repository: 'weightapprepo'
           command: 'buildAndPush'
           Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+      
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: '$(System.DefaultWorkingDirectory)/docker-compose.yml'
+          artifact: 'compose_file'
+          publishLocation: 'pipeline'
 
 # Continuous Deployment Process for Staging Environment
 - stage: DeployToStaging
@@ -47,11 +53,15 @@ stages:
         deploy:
           steps:
           #- checkout: self docker-compose.yml
-          - task: CopyFiles@2
+
+          - task: DownloadPackage@1
             inputs:
-              SourceFolder: '.'
-              Contents: 'docker-compose.yml'
-              TargetFolder: '$(System.DefaultWorkingDirectory)'
+              packageType: 'upack'
+              feed: '/33ef9c60-0062-46db-bb15-ff7d3dd77d23'
+              view: 
+              definition: 'compose_file'
+              version: '*'
+              downloadPath: '$(System.DefaultWorkingDirectory)'
 
           - task: DockerCompose@0
             inputs:
