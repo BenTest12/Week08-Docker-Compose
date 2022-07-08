@@ -40,8 +40,8 @@ stages:
 - stage: CI
   jobs:
   - job: BuildAndPushDocker
-    workspace: 
-      clean: all
+    # workspace: 
+    #   clean: all
     steps:
       - task: Docker@2
         inputs:
