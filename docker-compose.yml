@@ -26,7 +26,10 @@ services:
   web:
       hostname: web
       container_name: wt-app
-      build:  .
+      build:  .     
+      networks:
+        test:
+          ipv4_address: 10.5.0.6
       restart: always
       depends_on:
         - wt-db
@@ -47,10 +50,8 @@ services:
         #DATABASE_URL: postgres://${PGUSER}:${PGPASS}@db:5432/postgres
         PGPORT: 5432
 
-      networks:
-        test:
-          ipv4_address: 10.5.0.6
-
+      condition: service_healthy
+      
 
 
 
