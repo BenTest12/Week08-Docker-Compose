@@ -46,7 +46,7 @@ stages:
       runOnce:
         deploy:
           steps:
-          - checkout: self
+          - checkout: main docker-compose.yml
 
           - task: DockerCompose@0
             inputs:
@@ -55,6 +55,7 @@ stages:
               azureContainerRegistry: '{"loginServer":"ben1213test.azurecr.io", "id" : "/subscriptions/4c91c978-76e8-4500-a93a-fed14688e040/resourceGroups/registry/providers/Microsoft.ContainerRegistry/registries/ben1213test"}'
               dockerComposeFile: 'docker-compose.yml'
               dockerComposeFileArgs: |
+                VERSION=$(VER)
                 HOST_URL = $(HOSTURL)
                 OKTA_ORG_URL = $(OKTA_URL)
                 OKTA_CLIENT_ID = $(OKTA_CLIENT)
