@@ -16,6 +16,7 @@ services:
       POSTGRES_USER: ${PGUSER}
       POSTGRES_PASSWORD: ${PGPASS}
       POSTGRES_DB: postgres
+      DATABASE_URL: postgres://${PGUSER}:${PGPASS}@db:5432/postgres
 
   web:
       hostname: web
