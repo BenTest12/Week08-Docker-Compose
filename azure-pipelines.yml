@@ -66,6 +66,17 @@ stages:
         deploy:
           steps:
 
+          - task: Docker@2
+            displayName: 'Login to Registry'
+            inputs:
+              containerRegistry: $(containerSrvReg)
+              command: 'login'
+
+          - task: CmdLine@2
+            displayName: Pull image
+            inputs:
+              script: ' docker pull $(containerRegLogin)/$(imageRepository):$(Build.BuildId)'
+
           - task: DockerCompose@0
             inputs:
               containerregistrytype: 'Azure Container Registry'
