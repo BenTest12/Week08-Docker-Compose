@@ -71,6 +71,7 @@ stages:
                 OKTA_CLIENT_SECRET =$(OKTA_SECRET)
                 PGUSERNAME = $(PGUSER)
                 PGPASSWORD = $(PGPASS)
+                PGDATABASE = db
               action: 'Run a Docker Compose command'
               dockerComposeCommand: 'up'
               #arguments: '-d'
