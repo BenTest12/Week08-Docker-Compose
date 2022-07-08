@@ -17,6 +17,11 @@ services:
       POSTGRES_PASSWORD: ${PGPASS}
       POSTGRES_DB: postgres
       #DATABASE_URL: postgres://${PGUSER}:${PGPASS}@db:5432/postgres
+    networks:
+      test:
+        ipv4_address: 10.5.0.5
+
+
 
   web:
       hostname: web
@@ -42,7 +47,17 @@ services:
         #DATABASE_URL: postgres://${PGUSER}:${PGPASS}@db:5432/postgres
         PGPORT: 5432
 
+      networks:
+        test:
+          ipv4_address: 10.5.0.6
+
+
+
+
 networks:
-  default:
-    # Use a custom driver
+  test:
     driver: bridge
+    ipam:
+     config:
+       - subnet: 10.5.0.0/16
+         gateway: 10.5.0.1
