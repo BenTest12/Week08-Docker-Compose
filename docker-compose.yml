@@ -7,8 +7,6 @@ services:
     hostname: db
     container_name: wt-db
     image: postgres
-    networks:
-      - db
     restart: always
     ports:
       - "5432:5432"
@@ -24,9 +22,6 @@ services:
       hostname: web
       container_name: wt-app
       build:  .
-      networks:
-        - db
-        - web
       restart: always
       depends_on:
         - db
@@ -40,7 +35,7 @@ services:
         OKTA_ORG_URL: ${OKTA_URL}
         OKTA_CLIENT_ID: ${OKTA_CLIENT}
         OKTA_CLIENT_SECRET: ${OKTA_SECRET}
-        PGHOST: 
+        PGHOST: db
         PGUSERNAME: ${PGUSER}
         PGDATABASE: postgres
         PGPASSWORD: ${PGPASS}
@@ -48,9 +43,6 @@ services:
         PGPORT: 5432
 
 networks:
-  db:
+  default:
     # Use a custom driver
-    driver: bridge
-  web:
-    # Use a custom driver which takes special options
     driver: bridge
