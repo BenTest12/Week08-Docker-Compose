@@ -7,3 +7,4 @@ EXPOSE 8080
 RUN npm install
 CMD npm run initdb && npm run dev
 "test"
+.
