@@ -46,7 +46,12 @@ stages:
       runOnce:
         deploy:
           steps:
-          - checkout: self docker-compose.yml
+          #- checkout: self docker-compose.yml
+          - task: CopyFiles@2
+            inputs:
+              SourceFolder: '.'
+              Contents: 'docker-compose.yml'
+              TargetFolder: '$(System.DefaultWorkingDirectory)'
 
           - task: DockerCompose@0
             inputs:
