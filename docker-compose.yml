@@ -1,17 +1,14 @@
 # Use postgres/example user/password credentials
 version: '3.1'
 
-# networks:
-#   web:
-#     driver: bridge
-
 services:
   
   db:
     hostname: db
     container_name: wt-db
     image: postgres
-    network_mode: bridge
+    networks:
+      - db
     restart: always
     ports:
       - "5432:5432"
@@ -27,7 +24,9 @@ services:
       hostname: web
       container_name: wt-app
       build:  .
-      network_mode: bridge
+      networks:
+        - db
+        - web
       restart: always
       depends_on:
         - db
@@ -41,9 +40,17 @@ services:
         OKTA_ORG_URL: ${OKTA_URL}
         OKTA_CLIENT_ID: ${OKTA_CLIENT}
         OKTA_CLIENT_SECRET: ${OKTA_SECRET}
-        PGHOST: db
+        PGHOST: 
         PGUSERNAME: ${PGUSER}
         PGDATABASE: postgres
         PGPASSWORD: ${PGPASS}
         #DATABASE_URL: postgres://${PGUSER}:${PGPASS}@db:5432/postgres
         PGPORT: 5432
+
+networks:
+  db:
+    # Use a custom driver
+    driver: bridge
+  web:
+    # Use a custom driver which takes special options
+    driver: bridge
