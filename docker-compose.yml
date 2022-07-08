@@ -1,9 +1,9 @@
 # Use postgres/example user/password credentials
 version: '3.1'
 
-networks:
-  web:
-    driver: bridge
+# networks:
+#   web:
+#     driver: bridge
 
 services:
   
@@ -11,8 +11,7 @@ services:
     hostname: db
     container_name: wt-db
     image: postgres
-    networks:
-      - web
+    network_mode: bridge
     restart: always
     ports:
       - "5432:5432"
@@ -28,8 +27,7 @@ services:
       hostname: web
       container_name: wt-app
       build:  .
-      networks:
-       - web
+      network_mode: bridge
       restart: always
       depends_on:
         - db
