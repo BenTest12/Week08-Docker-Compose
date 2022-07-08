@@ -1,12 +1,18 @@
 # Use postgres/example user/password credentials
 version: '3.1'
 
+networks:
+  web:
+    driver: bridge
+
 services:
   
   db:
     hostname: db
     container_name: wt-db
     image: postgres
+    networks:
+      - bridge
     restart: always
     ports:
       - "5432:5432"
@@ -16,12 +22,14 @@ services:
       POSTGRES_USER: ${PGUSER}
       POSTGRES_PASSWORD: ${PGPASS}
       POSTGRES_DB: postgres
-      DATABASE_URL: postgres://${PGUSER}:${PGPASS}@db:5432/postgres
+      #DATABASE_URL: postgres://${PGUSER}:${PGPASS}@db:5432/postgres
 
   web:
       hostname: web
       container_name: wt-app
       build:  .
+      networks:
+       - bridge
       restart: always
       depends_on:
         - db
@@ -39,5 +47,5 @@ services:
         PGUSERNAME: ${PGUSER}
         PGDATABASE: postgres
         PGPASSWORD: ${PGPASS}
-        DATABASE_URL: postgres://${PGUSER}:${PGPASS}@db:5432/postgres
+        #DATABASE_URL: postgres://${PGUSER}:${PGPASS}@db:5432/postgres
         PGPORT: 5432
