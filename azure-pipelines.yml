@@ -31,11 +31,14 @@ stages:
           command: 'buildAndPush'
           Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
       
-      - task: PublishPipelineArtifact@1
+      - task: UniversalPackages@0
         inputs:
-          targetPath: '$(System.DefaultWorkingDirectory)/docker-compose.yml'
-          artifact: 'compose_file'
-          publishLocation: 'pipeline'
+          command: 'publish'
+          publishDirectory: '$(System.DefaultWorkingDirectory)/docker-compose.yml'
+          feedsToUsePublish: 'internal'
+          vstsFeedPublish: '33ef9c60-0062-46db-bb15-ff7d3dd77d23'
+          vstsFeedPackagePublish: 'compose_file'
+          versionOption: 'patch'
 
 # Continuous Deployment Process for Staging Environment
 - stage: DeployToStaging
@@ -54,14 +57,14 @@ stages:
           steps:
           #- checkout: self docker-compose.yml
 
-          - task: DownloadPackage@1
+          - task: UniversalPackages@0
             inputs:
-              packageType: 'upack'
-              feed: '/33ef9c60-0062-46db-bb15-ff7d3dd77d23'
-              view: 
-              definition: 'compose_file'
-              version: '*'
-              downloadPath: '$(System.DefaultWorkingDirectory)'
+              command: 'download'
+              downloadDirectory: '$(System.DefaultWorkingDirectory)'
+              feedsToUse: 'internal'
+              vstsFeed: '33ef9c60-0062-46db-bb15-ff7d3dd77d23'
+              vstsFeedPackage: 'compose_file'
+              vstsPackageVersion: '*'
 
           - task: DockerCompose@0
             inputs:
