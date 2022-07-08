@@ -34,8 +34,9 @@ services:
         OKTA_ORG_URL: ${OKTA_URL}
         OKTA_CLIENT_ID: ${OKTA_CLIENT}
         OKTA_CLIENT_SECRET: ${OKTA_SECRET}
-        PGHOST: "db"
+        PGHOST: db
         PGUSERNAME: ${PGUSER}
         PGDATABASE: postgres
         PGPASSWORD: ${PGPASS}
+        DATABASE_URL: postgres://username:pgpassword@db:5432/postgres
         PGPORT: 5432
