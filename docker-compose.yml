@@ -24,7 +24,7 @@ services:
       build:  .
       restart: always
       depends_on:
-        - db
+        - wt-db
       ports:
         - "8080:3000"
       environment:
