@@ -46,7 +46,7 @@ stages:
       runOnce:
         deploy:
           steps:
-          - checkout: main docker-compose.yml
+          - checkout: self docker-compose.yml
 
           - task: DockerCompose@0
             inputs:
