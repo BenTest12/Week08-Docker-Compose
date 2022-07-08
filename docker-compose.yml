@@ -38,5 +38,5 @@ services:
         PGUSERNAME: ${PGUSER}
         PGDATABASE: postgres
         PGPASSWORD: ${PGPASS}
-        DATABASE_URL: postgres://username:pgpassword@db:5432/postgres
+        DATABASE_URL: postgres://${PGUSER}:${PGPASS}@db:5432/postgres
         PGPORT: 5432
