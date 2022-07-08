@@ -20,7 +20,7 @@ services:
   web:
       hostname: web
       container_name: wt-app
-      build:  . 
+      image: ben1213test.azurecr.io/weightapprepo:${VER} 
       restart: always
       depends_on:
         - db
