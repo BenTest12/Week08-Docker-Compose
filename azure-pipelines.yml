@@ -6,7 +6,7 @@
 
 trigger:
 - main
-- feature/*
+- feature
 
 variables:
   group: "compose-vars"
