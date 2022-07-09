@@ -8,6 +8,11 @@ trigger:
 - main
 - feature
 
+pr:
+#- main
+- feature/
+
+
 variables:
   group: "compose-vars"
   containerSrvReg: weight-app-repo
