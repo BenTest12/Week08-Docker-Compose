@@ -8,6 +8,13 @@ trigger:
 - main
 - feature
 
+pr:
+  autoCancel: false
+  branches:
+    include:
+    - main
+    - feature
+
 
 variables:
   group: "compose-vars"
